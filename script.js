@@ -1,4 +1,5 @@
 const DISPLAY = document.getElementsByClassName("display")[0]
+DISPLAY.innerText = ""
 
 const one = document.getElementById("1")
 const two = document.getElementById("2")
@@ -20,4 +21,9 @@ for(i=0;i<10;i++){
 function doMath(num){
     firstNum = firstNum + num.innerText
     console.log(firstNum)
+    addToDisplay(num.innerText)
+}
+
+function addToDisplay(newel){
+    DISPLAY.innerText = DISPLAY.innerText + newel
 }
