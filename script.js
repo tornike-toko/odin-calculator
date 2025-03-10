@@ -14,6 +14,18 @@ const zero = document.getElementById("0")
 
 let firstNum = ""
 
+const add = document.getElementById("add")
+const sub = document.getElementById("sub")
+const mult = document.getElementById("mult")
+const dev = document.getElementById("dev")
+
+let opperator = ""
+
+add.addEventListener("click", (e) => {chooseOpperator(e.target)})
+sub.addEventListener("click", (e) => {chooseOpperator(e.target)})
+mult.addEventListener("click", (e) => {chooseOpperator(e.target)})
+dev.addEventListener("click", (e) => {chooseOpperator(e.target)})
+
 for(i=0;i<10;i++){
     document.getElementById(`${i}`).addEventListener("click",(e) => { doMath(e.target)})
 }
@@ -26,4 +38,21 @@ function doMath(num){
 
 function addToDisplay(newel){
     DISPLAY.innerText = DISPLAY.innerText + newel
+}
+
+function chooseOpperator(e){
+    switch (e.innerText){
+        case "+":
+            console.log(e.innerText)
+            break;
+        case "-":
+            console.log(e.innerText)
+            break;
+        case "*":
+            console.log(e.innerText)
+            break;
+        case "/":
+            console.log(e.innerText)
+            break;
+    }
 }
