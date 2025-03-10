@@ -13,6 +13,7 @@ const nine = document.getElementById("9")
 const zero = document.getElementById("0")
 
 let firstNum = ""
+let secondNum = ""
 
 const add = document.getElementById("add")
 const sub = document.getElementById("sub")
@@ -21,19 +22,44 @@ const dev = document.getElementById("dev")
 
 let opperator = ""
 
-add.addEventListener("click", (e) => {chooseOpperator(e.target)})
-sub.addEventListener("click", (e) => {chooseOpperator(e.target)})
-mult.addEventListener("click", (e) => {chooseOpperator(e.target)})
-dev.addEventListener("click", (e) => {chooseOpperator(e.target)})
+add.addEventListener("click", (e) => {doMath(e.target)})
+sub.addEventListener("click", (e) => {doMath(e.target)})
+mult.addEventListener("click", (e) => {doMath(e.target)})
+dev.addEventListener("click", (e) => {doMath(e.target)})
 
 for(i=0;i<10;i++){
     document.getElementById(`${i}`).addEventListener("click",(e) => { doMath(e.target)})
 }
 
-function doMath(num){
-    firstNum = firstNum + num.innerText
-    console.log(firstNum)
-    addToDisplay(num.innerText)
+function doMath(e){
+    if(opperator == ""){
+        //choose first number and have option to choose operator
+        if(e.innerText == "+" || e.innerText == "-" || e.innerText == "*" || e.innerText == "/"){
+            //choose operator
+            if(firstNum != ""){
+                chooseOpperator(e)
+            }
+        }else{
+            //then it is number and choose number
+            firstNum = firstNum + e.innerText
+            console.log(firstNum)
+            addToDisplay(e.innerText)
+        }
+    }else if(opperator != ""){
+        if(e.innerText == "+" || e.innerText == "-" || e.innerText == "*" || e.innerText == "/"){
+            if(secondNum ==""){
+                console.log(`change ${e.innerText}`)
+            }else{
+                console.log("do calculation and get this operation as next operation")
+            }
+            // console.log(`change operator to ${e.innerText}`)
+        }else{
+            //then it is number and choose number
+            secondNum = secondNum + e.innerText
+            console.log(secondNum)
+            addToDisplay(e.innerText)
+        }
+    }
 }
 
 function addToDisplay(newel){
@@ -43,15 +69,23 @@ function addToDisplay(newel){
 function chooseOpperator(e){
     switch (e.innerText){
         case "+":
+            opperator = "add"
+            addToDisplay(e.innerText)
             console.log(e.innerText)
             break;
         case "-":
+            opperator = "sub"
+            addToDisplay(e.innerText)
             console.log(e.innerText)
             break;
         case "*":
+            opperator = "mult"
+            addToDisplay(e.innerText)
             console.log(e.innerText)
             break;
         case "/":
+            opperator = "dev"
+            addToDisplay(e.innerText)
             console.log(e.innerText)
             break;
     }
